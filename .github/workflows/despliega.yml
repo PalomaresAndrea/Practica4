@@ -3,10 +3,10 @@ name: Despliega
 on:
   push:
     branches:
-      - main
+      - Andrea
   pull_request:
     branches:
-      - main
+      - Andrea
 
 jobs:
   deploy:
