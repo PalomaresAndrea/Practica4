@@ -1,4 +1,4 @@
-name: Despliega
+name: Despliega React App (GitHub Pages + Docker)
 
 on:
   push:
@@ -11,6 +11,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Requerido por actions-gh-pages
 
     steps:
       - name: 🧾 Descargando código del repositorio
