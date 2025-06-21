@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './Layout';
 import NavBar from './NavBar';
 
-
 function Home() {
   return (
     <>
