@@ -1,28 +1,52 @@
 name: Despliega
+
 on:
   push:
     branches:
       - main
-      - main
   pull_request:
     branches:
       - main
-      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: 🧾 Descargando código del repositorio
         uses: actions/checkout@v4
-      - name: Set up Node.js
+
+      - name: ⚙ Configurando Node.js versión 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Install dependencies
-        run: npm install
-      - name: Build the app
-        run: npm run build
-      - name: Deploy to GitHub Pages
+
+      - name: 📦 Instalando dependencias
+        run: |
+          echo "🔧 Ejecutando npm install..."
+          npm install
+
+      - name: 🏗 Compilando la aplicación React
+        run: |
+          echo "📂 Ejecutando npm run build para generar la carpeta /build..."
+          npm run build
+
+      - name: ⚙ Activando Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Iniciando sesión en Docker Hub
+        run: |
+          echo "🔐 Autenticando con Docker Hub..."
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "✅ Login exitoso"
+
+      - name: 🐳 Construyendo y subiendo la imagen Docker (Node 24)
+        run: |
+          echo "🚧 Iniciando construcción de imagen Docker con Node 24"
+          docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest --push .
+          echo "✅ Imagen construida y subida correctamente"
+
+      - name: 🚀 Desplegando en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
