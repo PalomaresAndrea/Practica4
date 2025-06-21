@@ -15,40 +15,40 @@ jobs:
       contents: write  # Requerido por actions-gh-pages
 
     steps:
-      - name: 🧾 Descargando código del repositorio
+      - name:  Descargando código del repositorio
         uses: actions/checkout@v4
 
-      - name: ⚙ Configurando Node.js versión 18
+      - name: Configurando Node.js versión 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 📦 Instalando dependencias
+      - name:  Instalando dependencias
         run: |
-          echo "🔧 Ejecutando npm install..."
+          echo "Ejecutando npm install..."
           npm install
 
-      - name: 🏗 Compilando la aplicación React
+      - name:  Compilando la aplicación React
         run: |
-          echo "📂 Ejecutando npm run build para generar la carpeta /build..."
+          echo " Ejecutando npm run build para generar la carpeta /build..."
           npm run build
 
-      - name: ⚙ Activando Docker Buildx
+      - name:  Activando Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: 🔐 Iniciando sesión en Docker Hub
+      - name:  Iniciando sesión en Docker Hub
         run: |
-          echo "🔐 Autenticando con Docker Hub..."
+          echo " Autenticando con Docker Hub..."
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          echo "✅ Login exitoso"
+          echo " Login exitoso"
 
-      - name: 🐳 Construyendo y subiendo la imagen Docker (Node 24)
+      - name:  Construyendo y subiendo la imagen Docker (Node 24)
         run: |
-          echo "🚧 Iniciando construcción de imagen Docker con Node 24"
+          echo " Iniciando construcción de imagen Docker con Node 24"
           docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest --push .
-          echo "✅ Imagen construida y subida correctamente"
+          echo " Imagen construida y subida correctamente"
 
-      - name: 🚀 Desplegando en GitHub Pages
+      - name:  Desplegando en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

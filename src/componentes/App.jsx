@@ -7,7 +7,7 @@ function Home() {
     <>
       <NavBar />
       <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h2>✈️ Bienvenido a la Página de Viajes y Turismo  🌍</h2>
+        <h2>✈️ Bienvenido a la Página de Viajes y Turismo by Andy 🌍</h2>
         <hr />
         <p>Esta aplicación está diseñada para los amantes de los viajes. Aquí podrás encontrar información sobre:</p>
         <ul>
