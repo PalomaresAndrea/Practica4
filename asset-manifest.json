@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Practica4/static/js/main.013d0fb9.js",
+    "main.js": "/Practica4/static/js/main.b8a7fc08.js",
     "index.html": "/Practica4/index.html",
-    "main.013d0fb9.js.map": "/Practica4/static/js/main.013d0fb9.js.map"
+    "main.b8a7fc08.js.map": "/Practica4/static/js/main.b8a7fc08.js.map"
   },
   "entrypoints": [
-    "static/js/main.013d0fb9.js"
+    "static/js/main.b8a7fc08.js"
   ]
 }
